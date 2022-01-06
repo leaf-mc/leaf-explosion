@@ -1,12 +1,9 @@
 package mc.leaf.modules.explosion;
 
 import mc.leaf.core.interfaces.ILeafCore;
-import mc.leaf.modules.explosion.commands.ExplosionCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Optional;
 
 public final class LeafExplosion extends JavaPlugin {
 
@@ -21,12 +18,6 @@ public final class LeafExplosion extends JavaPlugin {
         } else {
             this.getLogger().severe("Unable to find LeafCore instance.");
         }
-    }
-
-    public void registerDisabledCommand() {
-
-        Optional.ofNullable(Bukkit.getPluginCommand("explosion"))
-                .ifPresent(pluginCommand -> pluginCommand.setExecutor(new ExplosionCommand()));
     }
 
 }

@@ -42,9 +42,10 @@ public class LeafExplosionModule implements ILeafModule {
     @Override
     public void onDisable() {
 
+        Optional.ofNullable(Bukkit.getPluginCommand("explosion"))
+                .ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
         this.manager.stop();
         this.manager = null;
-        this.plugin.registerDisabledCommand();
         this.enabled = false;
     }
 
