@@ -1,4 +1,4 @@
-package mc.leaf.modules.explosion.data;
+package mc.leaf.modules.explosions.data;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;

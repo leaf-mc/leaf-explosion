@@ -1,13 +1,13 @@
-name: LeafExplosion
+name: LeafExplosions
 version: '${version}'
-main: mc.leaf.modules.explosion.LeafExplosion
+main: mc.leaf.modules.explosions.LeafExplosions
 api-version: 1.18
-prefix: LeafExplosion
+prefix: LeafExplosions
 depend: [ LeafCore ]
 authors: [ alexpado ]
 description: Avoid non-player (other than TNT) explosions to erase your entire world !
 website: https://github.com/alexpado
 commands:
-  explosion:
-    usage: /explosion heal
+  explosions:
+    usage: /explosions heal
     description: Restore all exploded blocks

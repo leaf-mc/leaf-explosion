@@ -1,7 +1,7 @@
-package mc.leaf.modules.explosion.data;
+package mc.leaf.modules.explosions.data;
 
 import mc.leaf.core.events.LeafListener;
-import mc.leaf.modules.explosion.LeafExplosionModule;
+import mc.leaf.modules.explosions.LeafExplosionsModule;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -9,11 +9,11 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.InventoryHolder;
 
-public class ExplosionListener extends LeafListener {
+public class ExplosionsListener extends LeafListener {
 
-    private final LeafExplosionModule module;
+    private final LeafExplosionsModule module;
 
-    public ExplosionListener(LeafExplosionModule module) {
+    public ExplosionsListener(LeafExplosionsModule module) {
 
         this.module = module;
     }

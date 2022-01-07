@@ -1,23 +1,23 @@
-package mc.leaf.modules.explosion;
+package mc.leaf.modules.explosions;
 
 import mc.leaf.core.interfaces.ILeafCore;
 import mc.leaf.core.interfaces.ILeafModule;
-import mc.leaf.modules.explosion.commands.ExplosionModuleCommand;
-import mc.leaf.modules.explosion.data.ExplosionListener;
-import mc.leaf.modules.explosion.data.ExplosionManager;
+import mc.leaf.modules.explosions.commands.ExplosionsModuleCommand;
+import mc.leaf.modules.explosions.data.ExplosionsListener;
+import mc.leaf.modules.explosions.data.ExplosionsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 
-public class LeafExplosionModule implements ILeafModule {
+public class LeafExplosionsModule implements ILeafModule {
 
-    private final LeafExplosion    plugin;
-    private final ILeafCore        core;
-    private       ExplosionManager manager;
-    private       boolean          enabled = false;
+    private final LeafExplosions plugin;
+    private final ILeafCore         core;
+    private       ExplosionsManager manager;
+    private       boolean           enabled = false;
 
-    public LeafExplosionModule(LeafExplosion plugin, ILeafCore core) {
+    public LeafExplosionsModule(LeafExplosions plugin, ILeafCore core) {
 
         this.plugin = plugin;
         this.core   = core;
@@ -28,13 +28,13 @@ public class LeafExplosionModule implements ILeafModule {
     @Override
     public void onEnable() {
 
-        this.manager = new ExplosionManager(this);
+        this.manager = new ExplosionsManager(this);
         this.manager.start();
 
-        this.core.getEventBridge().register(this, new ExplosionListener(this));
+        this.core.getEventBridge().register(this, new ExplosionsListener(this));
 
         Optional.ofNullable(Bukkit.getPluginCommand("explosion"))
-                .ifPresent(pluginCommand -> pluginCommand.setExecutor(new ExplosionModuleCommand(this)));
+                .ifPresent(pluginCommand -> pluginCommand.setExecutor(new ExplosionsModuleCommand(this)));
 
         this.enabled = true;
     }
@@ -42,7 +42,7 @@ public class LeafExplosionModule implements ILeafModule {
     @Override
     public void onDisable() {
 
-        Optional.ofNullable(Bukkit.getPluginCommand("explosion"))
+        Optional.ofNullable(Bukkit.getPluginCommand("explosions"))
                 .ifPresent(pluginCommand -> pluginCommand.setExecutor(null));
         this.manager.stop();
         this.manager = null;
@@ -73,7 +73,7 @@ public class LeafExplosionModule implements ILeafModule {
         return this.plugin;
     }
 
-    public ExplosionManager getManager() {
+    public ExplosionsManager getManager() {
 
         return manager;
     }

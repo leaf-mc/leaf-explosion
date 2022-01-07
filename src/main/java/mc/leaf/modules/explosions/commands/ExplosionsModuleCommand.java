@@ -1,14 +1,14 @@
-package mc.leaf.modules.explosion.commands;
+package mc.leaf.modules.explosions.commands;
 
 import mc.leaf.core.api.command.PluginCommandImpl;
 import mc.leaf.core.api.command.annotations.Runnable;
-import mc.leaf.modules.explosion.LeafExplosionModule;
+import mc.leaf.modules.explosions.LeafExplosionsModule;
 
-public class ExplosionModuleCommand extends PluginCommandImpl {
+public class ExplosionsModuleCommand extends PluginCommandImpl {
 
-    private final LeafExplosionModule module;
+    private final LeafExplosionsModule module;
 
-    public ExplosionModuleCommand(LeafExplosionModule module) {
+    public ExplosionsModuleCommand(LeafExplosionsModule module) {
 
         super(module.getCore());
         this.module = module;

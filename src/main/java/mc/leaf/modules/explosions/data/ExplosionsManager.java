@@ -1,17 +1,16 @@
-package mc.leaf.modules.explosion.data;
+package mc.leaf.modules.explosions.data;
 
 import mc.leaf.core.async.LeafManager;
 import mc.leaf.core.interfaces.ILeafModule;
-import mc.leaf.modules.explosion.data.ExplosionMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplosionManager extends LeafManager<ExplosionMeta> {
+public class ExplosionsManager extends LeafManager<ExplosionMeta> {
 
     private boolean healEverything = false;
 
-    public ExplosionManager(ILeafModule module) {
+    public ExplosionsManager(ILeafModule module) {
 
         super(module);
     }
