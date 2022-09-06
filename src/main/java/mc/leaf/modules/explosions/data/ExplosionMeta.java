@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -80,6 +81,11 @@ public class ExplosionMeta {
             Collection<Entity> entities = state.getWorld().getNearbyEntities(state.getLocation(), 3, 3, 3);
 
             for (Entity entity : entities) {
+
+                if (entity instanceof Player p && p.getGameMode() == GameMode.SPECTATOR) {
+                    continue;
+                }
+
                 boolean shouldBeTeleported = false;
 
                 Location entityFeetLocation = entity.getLocation().toBlockLocation().toCenterLocation().clone();
