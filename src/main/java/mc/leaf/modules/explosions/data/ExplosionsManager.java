@@ -4,6 +4,7 @@ import mc.leaf.core.async.LeafManager;
 import mc.leaf.core.interfaces.ILeafModule;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ExplosionsManager extends LeafManager<ExplosionMeta> {
@@ -44,11 +45,12 @@ public class ExplosionsManager extends LeafManager<ExplosionMeta> {
     @Override
     public void run() {
 
-        List<ExplosionMeta> replay = new ArrayList<>();
+        Collection<ExplosionMeta> replay = new ArrayList<>();
 
-        ExplosionMeta explosion = null;
-        while ((explosion = this.getHolder().poll()) != null) {
-            if (healEverything) {
+        while(!this.getHolder().isEmpty()) {
+            ExplosionMeta explosion = this.getHolder().poll();
+
+            if (this.healEverything) {
                 explosion.placeAll();
             } else {
                 explosion.placeNext();

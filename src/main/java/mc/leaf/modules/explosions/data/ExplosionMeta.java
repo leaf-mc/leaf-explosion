@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -16,16 +17,22 @@ public class ExplosionMeta {
     private final BlockingDeque<BlockState> states = new LinkedBlockingDeque<>();
     private       int                       nextRestore;
 
-    public ExplosionMeta(List<Block> blocks) {
+    public ExplosionMeta(Collection<Block> blocks, int delay) {
 
         List<Material> blacklist = Arrays.asList(Material.AIR, Material.TNT);
 
         blocks.stream()
                 .filter(block -> !blacklist.contains(block.getType()))
+                .sorted(this.getBlockComparator())
                 .map(Block::getState)
                 .forEach(this.states::add);
 
-        this.nextRestore = Bukkit.getCurrentTick() + 200; // 200 ticks = 10 seconds
+        this.nextRestore = Bukkit.getCurrentTick() + 100 + delay; // 200 ticks = 10 seconds
+    }
+
+    private Comparator<Block> getBlockComparator() {
+        return Comparator.comparing((Block block) -> block.getLocation().getBlockZ())
+                .thenComparing((Block block) -> block.getLocation().getBlockY());
     }
 
     /**
@@ -48,7 +55,7 @@ public class ExplosionMeta {
             return;
         }
 
-        // Delaying the restoration of the next BlockState of 0.1s.
+        // Delaying the restoration of the next BlockState.
         this.nextRestore = Bukkit.getCurrentTick() + 2;
 
         // Get the next BlockState to restore.
